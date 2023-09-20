@@ -1,0 +1,42 @@
+﻿@using Blog.Application.Models.DTOs;
+@model KayitDTO
+
+<form method="post">
+    <table>
+        <tr>
+            <td><label asp-for="Ad"></label> </td>
+            <td><input type="text" asp-for="Ad" /></td>
+        </tr>
+        <tr>
+            <td><label asp-for="Soyad"></label> </td>
+            <td><input type="text" asp-for="Soyad" /></td>
+        </tr>
+        <tr>
+            <td><label asp-for="EPosta"></label> </td>
+            <td><input type="email" asp-for="EPosta" /></td>
+        </tr>
+        <tr>
+            <td><label asp-for="Sifre"></label> </td>
+            <td><input type="password" asp-for="Sifre" /></td>
+        </tr>
+        <tr>
+            <td><label asp-for="SifreTekrar"></label> </td>
+            <td><input type="password" asp-for="SifreTekrar" /></td>
+        </tr>
+        <tr>
+            <td><label asp-for="ResimYolu"></label> </td>
+            <td><input type="hidden" asp-for="ResimYolu" value="empty.jpg" /></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" value="Uye Ekle" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <div asp-validation-summary="All"> </div>
+            </td>
+        </tr>
+    </table>
+</form>
+

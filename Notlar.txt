@@ -1,0 +1,115 @@
+﻿Onion Katmanli Mimari ile Blog Projesi Geliştirme...
+
+n-layer(3 katman)
+ 1.DAL =>Entities
+ 2.BLL =>Entities
+ 3.PL  =>Entities
+
+ Onion Model
+  1.Domain(CORE)
+    ***Entities(Models)
+    ***Repositories
+  2.Infrastructure
+  3.Application
+  4.Presentation(UI)
+
+ Klasik Katmanlı Mimarinin Dezavantajları
+ *** Katman sayisi artıkça yonetimin zorlaşması...
+ *** Katmanlar bir oncekş ve bir sonraki ile konuştuğundan; NSA bir katmana komsu olmayan başka bir katmanın kullanımına olanak vermemesi...
+ *** Kucuk projeler icin daha uygundur...
+
+ Onion Modelde ise;(2008 yılında gelmiştir...)
+ *** Katmanlar içten dışa kumulatif olarak gittiğinden; her yerden içteki herhangi bir katmana erişebiliriz...
+ *** Yonetim kolaylığı
+ *** Daha buyuk projeler için uygundur...
+
+ Repository Pattern;
+  *** Veri kaynağından bağımsız olarak herhangi bir veri kaynağından veriye erişim için kullanılır...
+
+
+  Bu projede kullanılacak olan teknolojiler...
+  1-Onion Model
+  2-C# Programlama Dili
+  3-SQL Server
+  4-EntityFrameworkCore
+  5-Repository Pattern
+  6-AutoMapper (Sınıfları eşleştirmek için kullanılır...)
+  7-Identity
+  8-Func<>
+  9-Expression<>
+  10-DTO(Data Tranfer Object)
+  11-Veritabanından ver silinmeyecek; aktif/pasif kullanılacak...
+  12-Asenkron Programlamayı kullanacagiz...
+     
+ -------------------------------------------------------
+ 
+     *** AppUser (FirstName, LastName, ImagePath)
+     *** Author  (FirstName, LastName, ImagePath)
+     *** Post    (Title,Content,ImagePath)
+     *** Genre   (Name)
+     *** Comment (Content)
+     *** Like    ()
+
+     Her Entity için;
+     *** CreateDate, UpdateDate, DeleteDate olmalı
+     *** Ayrıca ; Status olmalı(Active=1, Modified=2,Passive=3) 
+     *** Identity Kullanımı olmalı...
+
+
+Islem Basamakları
+1)Gerekli olan Models, Enums olusturunuz...(Domain)
+2)Navigation prop. ları olusturunuz...
+3)Context sınıfını olusturunuz...(Infrastructure)
+4)CFG dosyaları ile;
+      kısıt, ilk deger atama(Role=> Admin, User),
+      Genre(Science, Software, Sports)
+      AppUser=>???
+
+      ***Mutlaka CreateDate, Status Zorunlu olmalı, ModifiedDate ve DeleteDate zorunlu olmamalı...
+5)Tum modeller için genel veri tiplerini ve ozelliklerini belirleyiniz...
+6)Migration islemini yapınız, veritabanını olusturunuz...
+
+----- Veritabanı Olustu
+
+7)Repository'leri olustur...
+   (Domain         => Abstract)
+   (Infrastructure => Concrete)
+
+   AutoMapper Kullanımı
+
+   Neden Kullanmalayım???
+   *** İsimleri farklı içerikleri benzer yada aynı olan nesnelerin özelliklerini birbirleriyle eşleştirmek için kullanılır....
+   *** Yazılan kod satiri azalir...
+
+   Nasıl Kullanacağız???
+   *** AutoMapper'ı Nuget üzerinden yükle...(Application Layer)
+   *** Bir klasor içerisine; Profile sınıfından türetilmiş eşleme işleminde kullanılacak sınıfı olustur...
+   *** Ctor içerisinde; CreateMap() metodu ile sınıfları eşleştir...
+
+   Gerekli Ayarlar...
+   Program.cs içerisinde;
+   builder.Services.AddAutoMapper(x=>x.AddProfile(typeof(BlogMapper)));
+
+   Mapper'ın kullanılacağı sınıf içerisinde;
+      ctor injection yap...
+
+  N.S.A.
+  *** Adları aynı olan property'leri eşleştirmeye çalışır...
+  *** Ya Farklı olursa ????
+     ** Ozelleştirme yapılabilinir...
+
+
+     Posts
+     Neler yapılmalı...
+     Nerden baslanmalı...
+     1-Oncelikle DTO, VM ler tanımlanmalı...
+     2-IPostService arayuzunde gerekli olan yapılar tanımlanmalı...
+     3-PostService içerisine gerekli kodlar yazılmalı
+       3-1) IPostService implement edilmeli...
+       3-2) ctor injection...
+     4-program.cs içerisinde;
+       *** Post Service ve IPostRepository nin RAM de yasam suresini  belirleyen kullanım sekli belirlenmeli...
+
+
+
+

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Blog.Domain.Repositories
 {
-    internal interface IPostRepository:IBaseRepository<Post>
+    public interface IPostRepository:IBaseRepository<Post>
     {
     }
 }

@@ -1,0 +1,27 @@
+﻿@using Blog.Presentation.Models.ViewModel;
+@model CreatePostVM
+
+
+<form method="post" asp-area="UserPanel" asp-controller="Post" asp-action="AddPost" enctype="multipart/form-data">
+    @*ÖNEMLLİİİİİİ*@
+    <table>
+        <tr>
+            <td>@Html.LabelFor(x=>x.Title)</td>
+            <td><input type="text" asp-for="Title" /></td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(x=>x.Content)</td>
+            <td><input type="text" asp-for="Content" /></td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(x=>x.Genres)</td>
+            <td><select asp-items="@ViewBag.GenreList" asp-for="GenreId"></select></td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(x=>x.ImageFile)</td>
+            <td><input type="file" asp-for="ImageFile" /></td>
+        </tr>
+        <input type="submit" value="Kaydet"></input>
+    </table>
+
+</form>

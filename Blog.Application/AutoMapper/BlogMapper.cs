@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Blog.Application.AutoMapper
 {
     public class BlogMapper:Profile
@@ -25,6 +26,8 @@ namespace Blog.Application.AutoMapper
                 .ForMember(x => x.ResimYolu, x => x.MapFrom(y => y.ImagePath))
                 .ForMember(x=>x.EPosta, x=>x.MapFrom(y=>y.Email))
                 .ReverseMap();
+            CreateMap<Post, CreatePostDTO>().ReverseMap();
+            CreateMap<Genre, GenreDTO>().ReverseMap();
         }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using Blog.Application.AutoMapper;
 using Blog.Application.Services.AppUserService;
+using Blog.Application.Services.GenreService;
+using Blog.Application.Services.PostService;
 using Blog.Domain.Entities.Concrete;
 using Blog.Domain.Repositories;
 using Blog.Infrastructure;
@@ -23,6 +25,12 @@ builder.Services.AddIdentity<AppUser, AppRole>(x =>
 
 builder.Services.AddTransient<IAppUserService,AppUserService>();
 builder.Services.AddTransient<IAppUserRepository, AppUserRepository>();
+
+builder.Services.AddTransient<IPostService, PostService>();
+builder.Services.AddTransient<IPostRepository, PostRepository>();
+
+//builder.Services.AddTransient<IGenreService, GenreService>();
+builder.Services.AddTransient<IGenreRepository, GenreRepository>();
 
 
 

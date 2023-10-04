@@ -22,7 +22,7 @@ namespace Blog.Application.Models.VMs
         //Eklenecek ???
         //LikeVM, CommentVM...!!!
         //Tekilse Doldur, Çoğulsa doldurma....(Likes,Comments)
-        public List<Like> Likes { get; set; }
-        public List<Comment> Comments { get; set; }
+        public List<Like>? Likes { get; set; }
+        public List<Comment>? Comments { get; set; }
     }
 }

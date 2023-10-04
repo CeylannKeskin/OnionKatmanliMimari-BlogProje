@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Blog.Infrastructure.Repositories
 {
-    public class AppRoleRepository:BaseRepository<AppRole>
+    public class AppRoleRepository:BaseRepository<AppRole>, IAppRoleRepository
     {
         public AppRoleRepository(BlogContext context):base(context)
         {

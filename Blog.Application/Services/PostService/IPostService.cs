@@ -10,13 +10,13 @@ namespace Blog.Application.Services.PostService
 {
     public interface IPostService
     {
-        Task CreatePost(CreatePostDTO post);
-        Task<CreatePostDTO> CreatePost();
-        Task<int> UpdatePost(UpdatePostDTO post);
+        Task CreatePostAsync(CreatePostDTO post);
+        Task<CreatePostDTO> CreatePostAsync();
+        Task<int> UpdatePostAsync(UpdatePostDTO post);
 
-        Task DeletePost(int postId);
+        Task DeletePostAsync(int postId);
 
-        Task<PostVM>? GetPost(int postID);
-        Task<List<PostVM>>? GetAllPosts();
+        Task<PostVM>? GetPostAsync(int postID);
+        Task<List<PostVM>>? GetAllPostsAsync();
     }
 }

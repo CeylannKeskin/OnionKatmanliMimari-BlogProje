@@ -28,7 +28,11 @@ namespace Blog.Presentation.Controllers
                 return Content("Basarisiz");
         }
 
-
+        public IActionResult Logout()
+        {
+            _appUserService.Logout();
+            return NoContent();
+        }
         public IActionResult CreateUser()
         {
             return View();

@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@using Blog.Domain.Entities.Concrete;
+@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<AppUser> signInManager
+
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -27,6 +32,16 @@
                         </li>
                     </ul>
                 </div>
+            </div>
+            <div>
+                @if (signInManager.IsSignedIn(User))
+                {
+                    <a class="btn btn-outline-secondary " asp-controller="Login" asp-action="Logout">Logout</a>
+                }
+                else
+                {
+                    <a class="btn btn-outline-secondary " asp-controller="Login" asp-action="Index">Login</a>
+                }
             </div>
         </nav>
     </header>
